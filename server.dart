@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart';
 
 const String redirectHost = "192.168.201.8";
+const String serverIp = "192.168.0.104";
 
 void respond(HttpRequest request, Response response) {
   request.response.write(response.body);
@@ -25,7 +26,7 @@ Uri uriToDestinationUri(Uri uri) => uri.replace(
     );
 
 void main() async {
-  var server = await HttpServer.bind('192.168.241.227', 80);
+  var server = await HttpServer.bind(serverIp, 80);
   await server.forEach((HttpRequest request) {
     utf8.decodeStream(request).then((data) {
       var method = request.method;
